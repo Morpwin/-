@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="pagination">
+            <div class="pageSize">
+                <select name="" id="" onchange="changePageSize()">
+                    <option value="1">1</option>
+                    <option value="2" selected>2</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            <div class="first" onclick="jump('first')">首页</div>
+            <div class="prev" onclick="jump('prev')">上一页</div>
+            <ul class="num">
+                <li class="now">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+            <div class="next" onclick="jump('next')">下一页</div>
+            <div class="last" onclick="jump('last')">尾页</div>
+            <div class="jump">
+                <input type="text" maxlength="3">
+                <button onclick="jump('input')">跳转</button>
+            </div>
+        </div>
+        <div class="content">
+            <p>1</p>
+        </div>
+    </div>
+</body>
+<script src="./js/index.js"></script>
+</html>

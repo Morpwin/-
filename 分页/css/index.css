@@ -1,0 +1,78 @@
+.container {
+    max-width: 1200px;
+    min-width: 640px;
+    margin: 0 auto;
+    font-size: 12px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.pageSize {
+    width: 40px;
+}
+
+.pageSize select {
+    height: 30px;
+    border: 1px solid #ccc;
+    box-sizing: content-box;
+}
+
+.first, .prev, .next, .last{
+    width: 40px;
+    line-height: 30px;  
+    border: 1px solid #ccc;
+    padding: 0 5px;
+    color: #666;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.pagination ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination ul li {
+    width: 30px;
+    line-height: 30px;
+    border: 1px solid #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.pagination ul li.now {
+    background-color: turquoise;
+    color: #fff;
+}
+
+.jump {
+    width: 100px;
+}
+
+.jump input{
+    width: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.jump button {
+    width: 60px;
+    line-height: 30px;
+    padding: 0;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    text-align: center;
+    font-size: 12px;
+}
+.content p{
+    text-align: center;
+    margin-top: 20px;
+}
+
+

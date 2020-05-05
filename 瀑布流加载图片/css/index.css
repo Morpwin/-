@@ -1,0 +1,31 @@
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.fall {
+    width: 100%;
+}
+.fall ul {
+    width: 100%;
+    position: relative;
+}
+.fall ul li {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px #ccc;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.fall ul li img {
+    width: 240px;
+    height: auto;
+}
+@media screen and (max-width: 640px) {
+    .fall ul li img {
+        width: 120px;
+        height: auto;
+    }
+}
