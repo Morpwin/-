@@ -1,3 +1,7 @@
+* {
+    padding:  0;
+    margin: 0;
+}
 .container {
     max-width: 1200px;
     min-width: 640px;
@@ -52,7 +56,7 @@
 }
 
 .jump {
-    width: 100px;
+    width: 120px;
 }
 
 .jump input{
@@ -69,6 +73,7 @@
     background-color: #fff;
     text-align: center;
     font-size: 12px;
+    margin-left: 5px;
 }
 .content p{
     text-align: center;
