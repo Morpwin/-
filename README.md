@@ -1,5 +1,7 @@
 # demos
 
+
+
 ### [分页](https://morpwin.github.io/demos/%E5%88%86%E9%A1%B5/)
 ### [导航浮窗](https://morpwin.github.io/demos/%E5%AF%BC%E8%88%AA%E6%B5%AE%E7%AA%97/)
 ### [轮播图](https://morpwin.github.io/demos/%E8%BD%AE%E6%92%AD%E5%9B%BE/)
@@ -55,6 +57,8 @@ Html
         <img src="./images/loading.gif" data-lazy-url="./images/1.jpg">
     </div>
     
+src里为默认图片，data-lazy-url里为真正要加载的图片
+    
 Javascript
 
     let lazyLoad = new LazyLoad(el, obj, callback)
@@ -74,3 +78,38 @@ Javascript
         console.log("加载完了")
     })
     lazyLoad.init()
+    
+### [上拉加载](https://morpwin.github.io/demos/%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD/)
+
+上拉加载和懒加载相同，使用了
+**[IntersectionObserver](https://developer.mozilla.org/zh-CN/docs/Web/API/IntersectionObserver)** API
+
+以最下面的loading为目标，当出现loading，则进行加载
+
+#### 使用
+
+    <script src="js/index.js"></script>
+
+#### 示例
+
+Html
+
+    <article class="article">
+        <p>There are moments in life when you miss someone so much that you just want to pick them from your dreams and hug them for real! Dream what you want to dream;go where you want to go;be what you want to be,because you have only one life and one chance to do all the things you want to do.</p>
+    </article>
+    <div class="loading">
+        <img src="./images//loading.gif" alt="">
+    </div>
+    
+Javascript
+
+    let pullToLoad = new PullToLoad(container, target, obj, callback) 
+    pullToLoad.init()
+    
+#### 参数
+
+    container: 容器元素，加载的元素会向这个容器添加
+    target: 目标元素，使用container.insertBefore(item, target)插入元素
+    obj: IntersectionObserver API的参数
+    callback: 加载完触发的回调函数
+    
