@@ -7,8 +7,9 @@
 3. <a href="#返回顶部">返回顶部</a>
 4. <a href="#懒加载">懒加载</a>
 5. <a href="#上拉加载">上拉加载</a>
-6. <a href="#轮播图">轮播图</a>
-7. <a href="#瀑布流">瀑布流</a>
+6. <a href="#观察者模式">观察者模式</a>
+7. <a href="#轮播图">轮播图</a>
+8. <a href="#瀑布流">瀑布流</a>
 
 ### [分页](https://morpwin.github.io/demos/%E5%88%86%E9%A1%B5/)
 
@@ -210,6 +211,70 @@ Javascript
     options: IntersectionObserver API的参数
     callback: 加载完触发的回调函数
     
+### 观察者模式
+
+#### 使用
+
+    <script src="js/index.js"></script>
+    
+Javascript
+
+    let emitter = new EventEmitter()
+
+    
+#### addEvent
+
+添加一个事件监听器，支持链式调用
+
+    emmiter.addEvent(eventName, function)
+    
+- eventName 事件名称
+- function 监听器函数
+    
+#### once
+
+添加一个只触发一次的事件监听器，支持链式调用
+
+    emmiter.once(eventName, function)
+    
+- eventName 事件名称
+- function 监听器函数
+- 
+#### removeEvent
+
+删除一个事件监听器，支持链式调用
+
+    emmiter.removeEvent(eventName, function)
+    
+- eventName 事件名称
+- function 要删除的事件，如果想全部删除则填null
+
+#### emit
+
+触发事件，支持链式调用
+
+    emitter.emit(eventName, function, args)
+    
+- eventName 事件名称
+- function 要触发的事件，如果想全部触发则填null
+- args 参数
+    
+#### 示例
+
+    let emitter = new EventEmitter()
+    function fun1(arg) {
+        console.log(`fun1 = ${123 + arg}`)
+    }
+    function fun2(arg) {
+        console.log(`fun2 = ${456 + arg}`)
+    }
+    function fun3(arg) {
+        console.log(`fun3 = ${789 + arg}`)
+    }
+    emitter.addEvent("add", fun1)
+    emitter.addEvent("add", fun2)
+    emitter.once("add", fun3)
+    emitter.emit("add", null , 123)
         
 ### [轮播图](https://morpwin.github.io/demos/%E8%BD%AE%E6%92%AD%E5%9B%BE/)
 
