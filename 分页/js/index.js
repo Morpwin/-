@@ -26,7 +26,7 @@ class Page {
         this.initSizeSelect()
         this.initJumpBtn()
         this.initSearch()
-        this.changePageSize()
+        this.getData(this.options.pageSize, this.options.pageNum)
     }
     //初始化选择pageSize
     initSizeSelect() {
@@ -150,9 +150,9 @@ class Page {
         num.innerHTML = ""
         num.appendChild(fragment)
         this.content.innerHTML = insertContent
+        this.callback(`当前页码${pageNum}  每页${this.options.pageSize}条数据 总共${allnum}页`)
     }
     createNum(num, className) {
-        console.log(className)
         let li = document.createElement("li")
         li.innerHTML = num
         if (className) {

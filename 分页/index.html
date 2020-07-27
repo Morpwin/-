@@ -19,7 +19,9 @@
 <script>
     let el = document.querySelector(".pagination")
     let content = document.querySelector(".content")
-    let page = new Page(el, content)
+    let page = new Page(el, content, {}, function(res) {
+        console.log(res)
+    })
     page.init()
 </script>
 </html>
