@@ -5,50 +5,66 @@
     3.赋予动画效果
 */
 
-window.onload = function () {
-    //IE
-    if(document.attachEvent) {
-        document.attachEvent("onmousewheel",scrollFun)
-    }
-    //FireFox
-    if(document.addEventListener) {
-        window.addEventListener("DOMMouseScroll", scrollFun)
-    }
-    //chrome Opera
-    window.onmousewheel = scrollFun
-    
-    
-}
 
-function scrollFun(event) {
-    let header = document.querySelector("header")
-    let e = event || window.event
-    if(e.wheelDelta) {
-        if(e.wheelDelta < 0) {
-            addTransition(header)
-            setTranslate(header, -60)
-        }
-        else {
-            addTransition(header)
-            setTranslate(header, 0)
+class scrollFun {
+    constructor(el, distance, time) {
+        this.el = el,
+        this.distance = distance || 60,
+        this.time = time || 0.5
+    }
+    throttle(fn, wait) {
+        let timer = null
+        let context = this
+        return function() {
+            console.log(context)
+            let args = Array.prototype.slice.call(arguments)
+            if(!timer) {
+                clearTimeout(timer)
+                setTimeout(function() {
+                    fn.apply(context, args)
+                },wait)
+            }
         }
     }
-    else if(e.detail) {
-        if(e.detail > 0) {
-            addTransition(header)
-            setTranslate(header, -60)
+    init() {
+        //IE
+        if(document.attachEvent) {
+            document.attachEvent("onmousewheel",this.throttle(this.scrollFun, 400))
         }
-        else {
-            addTransition(header)
-            setTranslate(header, 0)
+        //FireFox
+        if(document.addEventListener) {
+            window.addEventListener("DOMMouseScroll", this.throttle(this.scrollFun, 400))
+        }
+        //chrome Opera
+        window.onmousewheel = this.throttle(this.scrollFun, 400)
+    }
+    scrollFun(event) {
+        let e = event || window.event
+        if(e.wheelDelta) {
+            if(e.wheelDelta < 0) {
+                this.addTransition()
+                this.setTranslate(-this.distance)
+            }
+            else {
+                this.addTransition()
+                this.setTranslate(0)
+            }
+        }
+        else if(e.detail) {
+            if(e.detail > 0) {
+                this.addTransition()
+                this.setTranslate(-this.distance)
+            }
+            else {
+                this.addTransition()
+                this.setTranslate(0)
+            }
         }
     }
-    
-}
-function addTransition(el) {
-    el.style.transition = "all 1s linear"
-}
-
-function setTranslate(el, dis) {
-    el.style.transform = 'translateY('+ dis +'px)'
+    addTransition() {
+        this.el.style.transition = `all ${this.time}s linear`
+    }
+    setTranslate(dis) {
+        this.el.style.transform = 'translateY('+ dis +'px)'
+    }
 }
