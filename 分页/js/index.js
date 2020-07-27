@@ -5,9 +5,8 @@ const data = [{title: "第1条数据"},{title: "第2条数据"},{title: "第3条
 {title: "第10条数据"},{title: "第11条数据"},{title: "第12条数据"},
 {title: "第13条数据"},{title: "第14条数据"},{title: "第15条数据"}]
 class Page {
-    constructor(el, content, options, callback) {
+    constructor(el, options, callback) {
         this.el = el,
-        this.content = content
         this.options = Object.assign({
                 pageSize: 2,
                 pageNum: 1,
@@ -106,15 +105,8 @@ class Page {
     //渲染
     render(data, allnum) {
         let num = document.querySelector(".num")
-        let insertContent = ""
         let fragment = document.createDocumentFragment()
         let pageNum = this.options.pageNum
-        data.forEach((v, i) => {
-            let str = `
-                <p>${v.title}</p>
-            `
-            insertContent += str
-        })
         if (allnum <= 5) {
             for (let i = 0; i < allnum; i++) {
                 if (i == pageNum - 1) {
@@ -149,8 +141,10 @@ class Page {
         }
         num.innerHTML = ""
         num.appendChild(fragment)
-        this.content.innerHTML = insertContent
-        this.callback(`当前页码${pageNum}  每页${this.options.pageSize}条数据 总共${allnum}页`)
+        this.callback({
+            "msg": `当前页码${pageNum}  每页${this.options.pageSize}条数据 总共${allnum}页`,
+            "data": data
+        })
     }
     createNum(num, className) {
         let li = document.createElement("li")

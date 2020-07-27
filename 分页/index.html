@@ -19,7 +19,15 @@
 <script>
     let el = document.querySelector(".pagination")
     let content = document.querySelector(".content")
-    let page = new Page(el, content, {}, function(res) {
+    let page = new Page(el, {}, function(res) {
+        let insertContent = ""
+        res.data.forEach((v, i) => {
+            let str = `
+                <p>${v.title}</p>
+            `
+            insertContent += str
+        })
+        content.innerHTML = insertContent
         console.log(res)
     })
     page.init()

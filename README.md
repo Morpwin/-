@@ -1,8 +1,57 @@
 # demos
 
-
-
 ### [分页](https://morpwin.github.io/demos/%E5%88%86%E9%A1%B5/)
+
+#### 使用
+
+    <script src="js/index.js"></script>
+    
+#### 示例
+
+Html
+
+    <div class="container">
+        <div class="pagination"></div>
+    </div>
+    <div class="content">
+        <p>1</p>
+    </div>
+    
+Javascript
+    
+    let page = new Page(el, options, callback)
+    page.init()
+
+#### 参数
+
+    el: html元素,如这里为document.querySelector(".pagination")
+    //options默认为以下参数
+    options: {
+        pageSize: 2,  //每页显示数量
+        pageNum: 1,  //页码
+        allNum: 1,  //总页数
+        selectValue: [1, 2, 5, 10, 15, 20],  //可选页码数，需要select为true才会生效
+        select: true,  //是否有选择页码框
+        first: true,  //是否有首页
+        prev: true,  //是否有上一页
+        next: true,  //是否有下一页
+        last: true,  //是否有尾页
+        jump: true  //是否有跳转指定页
+    }
+    callback: 跳转页码后触发回调函数，返回一个对象，里面有data
+
+    let el = document.querySelector(".pagination")
+    let content = document.querySelector(".content")
+    let page = new Page(el, {}, function(res) {
+        let insertContent = ""
+        res.data.forEach((v, i) => {
+            let str = `
+                <p>${v.title}</p>
+            `
+            insertContent += str
+        })
+        content.innerHTML = insertContent
+
 ### [导航浮窗](https://morpwin.github.io/demos/%E5%AF%BC%E8%88%AA%E6%B5%AE%E7%AA%97/)
 ### [轮播图](https://morpwin.github.io/demos/%E8%BD%AE%E6%92%AD%E5%9B%BE/)
 ### [瀑布流加载图片](https://morpwin.github.io/demos/%E7%80%91%E5%B8%83%E6%B5%81%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87/)(这个图片较多，加载比较慢)
