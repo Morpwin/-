@@ -1,5 +1,15 @@
 # demos
 
+### 目录
+
+1. <a href="#分页">分页</a>
+2. <a href="#导航浮窗">导航浮窗</a>
+3. <a href="#返回顶部">返回顶部</a>
+4. <a href="#懒加载">懒加载</a>
+5. <a href="#上拉加载">上拉加载</a>
+6. <a href="#轮播图">轮播图</a>
+7. <a href="#瀑布流">瀑布流</a>
+
 ### [分页](https://morpwin.github.io/demos/%E5%88%86%E9%A1%B5/)
 
 #### 使用
@@ -53,8 +63,46 @@ Javascript
         content.innerHTML = insertContent
 
 ### [导航浮窗](https://morpwin.github.io/demos/%E5%AF%BC%E8%88%AA%E6%B5%AE%E7%AA%97/)
-### [轮播图](https://morpwin.github.io/demos/%E8%BD%AE%E6%92%AD%E5%9B%BE/)
-### [瀑布流加载图片](https://morpwin.github.io/demos/%E7%80%91%E5%B8%83%E6%B5%81%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87/)(这个图片较多，加载比较慢)
+
+#### 使用
+
+    <script src="js/index.js"></script>
+    
+#### 示例
+
+Html
+
+    <header>
+        <div class="container">
+            <div class="logo">LOGO</div>
+            <ul>
+                <li>首页</li>
+                <li>A页</li>
+                <li>B页</li>
+                <li>B页</li>
+                <li>D页</li>
+            </ul>
+            <div class="search">
+                <input type="text">
+            </div>
+        </div>
+    </header>
+    
+Javascript
+    
+    let scroll = new scrollFun(el, distance, time)
+    scroll.init()
+
+#### 参数
+
+    el: html元素,如这里为document.querySelector("header")
+    //options默认为以下参数
+    distance: 导航条移动的距离，这个要根据个人的header来设置，默认60
+    time: 淡入淡出动画时间，单位是秒
+
+    let scroll = new scrollFun(document.querySelector("header"), 60, 0.5)
+    scroll.init()
+        
 ### [返回顶部](https://morpwin.github.io/demos/%E8%BF%94%E5%9B%9E%E9%A1%B6%E9%83%A8/)
 
 #### 使用
@@ -71,13 +119,13 @@ Html
     
 Javascript
     
-    var scroll = new Scroll(el, obj, callback)
+    var scroll = new Scroll(el, options, callback)
     scroll.init()
 
 #### 参数
 
     el: html元素,如这里为document.querySelector(".goTop")
-    obj: {
+    options: {
         top: 100,  //距离顶部100px显示，默认100
         fadeSpeed: 10,  //淡入淡出的速度，默认10
         speed: 10  //滚动到顶部的速度，默认10
@@ -110,13 +158,13 @@ src里为默认图片，data-lazy-url里为真正要加载的图片
     
 Javascript
 
-    let lazyLoad = new LazyLoad(el, obj, callback)
+    let lazyLoad = new LazyLoad(el, options, callback)
     lazyLoad.init()
     
 #### 参数
 
     el: html元素,如这里为document.querySelectorAll(".img-box")
-    obj为IntersectionObserver API所需的参数，这里列出几个，{
+    options为IntersectionObserver API所需的参数，这里列出几个，{
         threshold: [0, 0.25, 0.5, 0.75, 1] , //决定了什么时候触发回调函数,和图片交叉的比例
         root: document.querySelector('.container'), //指定目标元素所在的容器节点,不指定则为浏览器窗口
         rootMargin: "500px 0px"  //交叉区域的大小
@@ -152,13 +200,17 @@ Html
     
 Javascript
 
-    let pullToLoad = new PullToLoad(container, target, obj, callback) 
+    let pullToLoad = new PullToLoad(container, target, options, callback) 
     pullToLoad.init()
     
 #### 参数
 
     container: 容器元素，加载的元素会向这个容器添加
     target: 目标元素，使用container.insertBefore(item, target)插入元素
-    obj: IntersectionObserver API的参数
+    options: IntersectionObserver API的参数
     callback: 加载完触发的回调函数
     
+        
+### [轮播图](https://morpwin.github.io/demos/%E8%BD%AE%E6%92%AD%E5%9B%BE/)
+
+### <a id="瀑布流">[瀑布流加载图片](https://morpwin.github.io/demos/%E7%80%91%E5%B8%83%E6%B5%81%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87/)(这个图片较多，加载比较慢)</a>
